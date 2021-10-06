@@ -10,7 +10,6 @@ WEATHER_API_TOKEN = 'e5729a7c93cb11fd1468daf2686a76ab'
 BUCKET_NAME = 'weatehr_api_bucket1'
 
 
-
 def send_request(city_name: str, file_name: str, bucket_name: str, weather_api_token: str):
     url = 'http://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}'
     response = requests.get(url.format(city_name, weather_api_token))
@@ -31,4 +30,4 @@ def create_json(json_object, filename: str, bucket_name: str):
 if __name__ == '__main__':
     cities = ['London', 'Budapest', 'Chicago']
     for city in cities:
-        send_request(city, BUCKET_NAME, WEATHER_API_TOKEN,)
+        send_request(city, BUCKET_NAME, WEATHER_API_TOKEN, )
