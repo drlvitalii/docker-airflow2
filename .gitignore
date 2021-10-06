@@ -24,3 +24,6 @@ sftp-config.json
 
 # Python
 __pycache__
+venv/
+.idea/
+sa_creds.json

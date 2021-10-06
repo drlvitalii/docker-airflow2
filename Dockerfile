@@ -1,11 +1,9 @@
 FROM apache/airflow:2.1.2-python3.8
 
-LABEL maintainer="dataops-sre"
-
 ARG AIRFLOW_VERSION=2.1.2
 ARG PYTHON_VERSION=3.8
 
-ARG AIRFLOW_DEPS=""
+ARG AIRFLOW_DEPS="google"
 ARG PYTHON_DEPS=""
 
 RUN pip install apache-airflow[kubernetes,snowflake${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
@@ -14,5 +12,9 @@ RUN pip install apache-airflow[kubernetes,snowflake${AIRFLOW_DEPS:+,}${AIRFLOW_D
 COPY script/entrypoint.sh /entrypoint.sh
 COPY config/webserver_config.py $AIRFLOW_HOME/
 COPY dags $AIRFLOW_HOME/dags
+COPY dags/creds/sa_creds.json /tmp/sa_creds.json
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
 ENTRYPOINT ["/entrypoint.sh"]
