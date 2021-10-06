@@ -10,9 +10,9 @@ RUN pip install apache-airflow[kubernetes,snowflake${AIRFLOW_DEPS:+,}${AIRFLOW_D
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi
 
 COPY script/entrypoint.sh /entrypoint.sh
-COPY config/webserver_config.py $AIRFLOW_HOME/
+COPY config/* $AIRFLOW_HOME/
 COPY dags $AIRFLOW_HOME/dags
-COPY dags/creds/sa_creds.json /tmp/sa_creds.json
+COPY dags/creds/sa_creds.json /sa_creds.json
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt

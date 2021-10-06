@@ -20,6 +20,7 @@ services:
         environment:
             - AIRFLOW__CORE__LOAD_EXAMPLES=false
             - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+            - AIRFLOW__CORE__FERNET_KEY="ht9+hhjzsDT8wqYlglnvhuZmY133y3r3mTvs+nspKAU=="
         logging:
             options:
                 max-size: 10m

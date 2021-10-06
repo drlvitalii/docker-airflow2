@@ -114,4 +114,5 @@ case "$1" in
   *)
     exec "$@"
     ;;
+#airflow users create -e EMAIL -f admin -l admin -p admin -r Admin -u admin
 esac
